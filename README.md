@@ -16,7 +16,7 @@ The ring buffer will include a pipe character (_|_) at the end of the last messa
 ```C++
 #include "RingBuffer.h"
 
-RingBuffer ringBuffer("log", 32);
+RingBuffer ringBuffer(32);
 
 void setup()
 {
