@@ -1,16 +1,23 @@
 #include "RingBuffer.h"
-
 #include <string.h>
 
+
+#if defined(RING_BUFFER_FIXED_SIZE)
+RingBuffer::RingBuffer()
+:  mSize(RING_BUFFER_FIXED_SIZE),
+   mIndex(0)
+{
+    memset(mBuffer, '\0', mSize);
+}
+#else
 RingBuffer::RingBuffer(size_t size)
 : mSize(size),
-  mBuffer(NULL),
   mIndex(0)
 {
     // We don't add a trailing '\0' when
     // logging, so make sure the buffer is
     // already full of them.
-    mBuffer = (char *) calloc(size, 1);
+    mBuffer = (char *) calloc(mSize, 1);
 }
 
 
@@ -18,6 +25,8 @@ RingBuffer::~RingBuffer()
 {
     free(mBuffer);
 }
+#endif
+
 
 const char *RingBuffer::buffer()
 {
