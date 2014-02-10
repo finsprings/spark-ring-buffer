@@ -9,8 +9,6 @@
  * rather than one created on the heap.
  */
 
-#define RING_BUFFER_FIXED_SIZE 1024
-
 class RingBuffer
 {
 public:
